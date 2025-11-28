@@ -10,7 +10,7 @@ from .api.routes_todo import router as todo_router
 from .api.routes_todo_v2 import router as todo_router_v2
 from .core.config import settings
 
-from .custom_exception.index import TodoNotFound
+from .errors.index import TodoNotFound
 
 app = FastAPI(
     title=settings.app_name,

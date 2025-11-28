@@ -4,7 +4,7 @@
 from typing import List
 from fastapi import APIRouter, HTTPException
 from app.models.todo import Todo, TodoCreate
-from app.custom_exception.index import TodoNotFound
+from app.errors.index import TodoNotFound
 
 router = APIRouter(tags=["todos"])
 
