@@ -1,17 +1,15 @@
 # .pre-commit-config.yaml
 repos:
-- repo: github.com
-  rev: 24.4.0 # Use a specific version of Black
-  hooks:
-    - id: black
-      # The 'args: [--check]' line means the commit will fail if code is NOT formatted.
-      # This forces developers to run 'uv run black app' manually to pass.
-      # If you want auto-formatting, remove the 'args: [--check]' line.
-      args: ["--check", "--diff", "app"]
+  # Black formatter
+  - repo: https://github.com/psf/black
+    rev: 24.4.0          # yahan koi valid Black release tag use karo
+    hooks:
+      - id: black
+        args: ["--check", "--diff", "app"]
 
-- repo: github.com
-  rev: v0.6.2 # Use a specific version of Ruff
-  hooks:
-    # Use Ruff for linting AND for automatically fixing import sorting (I001)
-    - id: ruff
-      args: ["--fix", "app"]
+  # Ruff linter
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.6.2          # yahan ruff-pre-commit ka valid tag
+    hooks:
+      - id: ruff
+        args: ["--fix", "app"]
