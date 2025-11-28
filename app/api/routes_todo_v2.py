@@ -36,7 +36,7 @@ def create_todo(payload: TodoCreate, response: Response):
 
 
 # search : get todo by title
-@router.get("/todos/search", response_model=Todo)
+@router.get("/todos/search", response_model=List[Todo])
 def search_todo(limit: int = 10, q: str | None = None):
     results = []
     for todo in todos:
@@ -45,6 +45,7 @@ def search_todo(limit: int = 10, q: str | None = None):
         if len(results) >= limit:
             break
     if results:
+        print("Search results:", results)
         return results
     raise HTTPException(status_code=404, detail="Todo not found")
 

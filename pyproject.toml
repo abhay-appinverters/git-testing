@@ -26,7 +26,7 @@ dev = [
 line-length = 88
 
 # 🎯 Match your actual Python version
-target-version = ["py313"]
+target-version = ["py312"]
 
 include = '\.pyi?$'
 exclude = '''
@@ -43,7 +43,7 @@ exclude = '''
 
 [tool.ruff]
 line-length = 88
-target-version = "py313"
+target-version = "py312"
 src = ["app"]
 
 [tool.ruff.lint]
