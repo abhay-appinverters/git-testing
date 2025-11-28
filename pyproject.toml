@@ -3,7 +3,10 @@ name = "ai-project-v01"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+
+# 🔐 Make sure all devs are on the same major Python version
+requires-python = ">=3.13,<3.14"
+
 dependencies = [
     "fastapi>=0.122.0",
     "pydantic-settings>=2.12.0",
@@ -13,14 +16,18 @@ dependencies = [
 
 [dependency-groups]
 dev = [
-    "black>=25.11.0",
-    "pre-commit>=4.5.0",
-    "ruff>=0.14.6",
+    # 🧹 Tools pinned so every dev uses the SAME versions
+    "black==25.1.0",
+    "pre-commit==4.5.0",
+    "ruff==0.14.6",
 ]
 
 [tool.black]
 line-length = 88
-target-version = ["py311"]
+
+# 🎯 Match your actual Python version
+target-version = ["py313"]
+
 include = '\.pyi?$'
 exclude = '''
 /(
@@ -36,13 +43,12 @@ exclude = '''
 
 [tool.ruff]
 line-length = 88
-target-version = "py311"
+target-version = "py313"
 src = ["app"]
-# 'ignore' and 'select' moved to the [tool.ruff.lint] section below
 
-[tool.ruff.lint] # <- Add this new section header
+[tool.ruff.lint]
 ignore = [
-  "E501",  # (optional) line too long - Black handles it
+  "E501",  # line too long - Black handles it
 ]
 select = [
   "E",  # pycodestyle errors
