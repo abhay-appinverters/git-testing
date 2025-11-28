@@ -1,9 +1,10 @@
 # app/core/config.py
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
 # app/core/config.py
 
-from pydantic_settings import BaseSettings, SettingsConfigDict
+
 
 class Settings(BaseSettings):
     app_name: str = "My First FastAPI App"
@@ -21,5 +22,6 @@ class Settings(BaseSettings):
         env_file_encoding="utf-8",
         extra="ignore",  # ignore unknown env vars
     )
+
 
 settings = Settings()

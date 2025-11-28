@@ -1,20 +1,26 @@
 # app/api/routes_todo_v2.py
 
 
-from fastapi import APIRouter, HTTPException, status, Response
 from typing import List
+
+from fastapi import APIRouter, HTTPException, Response, status
+
 from app.models.todo import Todo, TodoCreate
 
 router = APIRouter(tags=["todos_v2"])
 
-todos: List[Todo] = [] 
+todos: List[Todo] = []
 _next_id = 1
 
-def setResponseHeaders(response: Response, status_code: int, apiEndpoint: str | None = None):
+
+def setResponseHeaders(
+    response: Response, status_code: int, apiEndpoint: str | None = None
+):
     response.status_code = status_code
     if apiEndpoint:
         response.headers["Location"] = apiEndpoint
     return response
+
 
 @router.post("/todos", response_model=Todo)
 def create_todo(payload: TodoCreate, response: Response):
@@ -23,10 +29,13 @@ def create_todo(payload: TodoCreate, response: Response):
     _next_id += 1
     todos.append(new_todo)
 
-    response = setResponseHeaders(response, status.HTTP_201_CREATED, f"/api_v2/todos/{new_todo.id}")
+    response = setResponseHeaders(
+        response, status.HTTP_201_CREATED, f"/api_v2/todos/{new_todo.id}"
+    )
     return new_todo
 
-# search : get todo by title 
+
+# search : get todo by title
 @router.get("/todos/search", response_model=Todo)
 def search_todo(limit: int = 10, q: str | None = None):
     results = []
@@ -38,6 +47,7 @@ def search_todo(limit: int = 10, q: str | None = None):
     if results:
         return results
     raise HTTPException(status_code=404, detail="Todo not found")
+
 
 # delete with 204 No Content by todo id
 @router.delete("/todos/{todo_id}")
