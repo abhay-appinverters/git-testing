@@ -5,7 +5,6 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 # app/core/config.py
 
 
-
 class Settings(BaseSettings):
     app_name: str = "My First FastAPI App"
     env: str = "dev"

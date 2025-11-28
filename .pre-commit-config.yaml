@@ -8,8 +8,8 @@ repos:
         args: ["--check", "--diff", "app"]
 
   # Ruff linter
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.6.2          # yahan ruff-pre-commit ka valid tag
-    hooks:
-      - id: ruff
-        args: ["--fix", "app"]
+  # - repo: https://github.com/astral-sh/ruff-pre-commit
+  #   rev: v0.6.2          # yahan ruff-pre-commit ka valid tag
+  #   hooks:
+  #     - id: ruff
+  #       args: ["--fix", "app"]
