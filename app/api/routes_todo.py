@@ -4,6 +4,7 @@
 from typing import List
 from fastapi import APIRouter, HTTPException
 from app.models.todo import Todo, TodoCreate
+from app.custom_exception.index import TodoNotFound
 
 router = APIRouter(tags=["todos"])
 
@@ -31,7 +32,8 @@ def get_todo(todo_id: int):
     for todo in todos:
         if todo.id == todo_id:
             return todo
-    raise HTTPException(status_code=404, detail="Todo not found")
+    # raise HTTPException(status_code=404, detail="Todo not found")
+    raise TodoNotFound(todo_id=todo_id)
 
 
 @router.put("/todos/{todo_id}", response_model=Todo)
@@ -41,7 +43,8 @@ def update_todo(todo_id: int, payload: TodoCreate):
             updated = Todo(id=todo_id, **payload.dict())
             todos[index] = updated
             return updated
-    raise HTTPException(status_code=404, detail="Todo not found")
+    # raise HTTPException(status_code=404, detail="Todo not found")
+    raise TodoNotFound(todo_id=todo_id)
 
 
 @router.delete("/todos/{todo_id}")
@@ -50,4 +53,5 @@ def delete_todo(todo_id: int):
         if todo.id == todo_id:
             del todos[index]
             return {"deleted": True}
-    raise HTTPException(status_code=404, detail="Todo not found")
+    # raise HTTPException(status_code=404, detail="Todo not found")
+    raise TodoNotFound(todo_id=todo_id)

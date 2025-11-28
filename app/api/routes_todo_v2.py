@@ -35,6 +35,12 @@ def create_todo(payload: TodoCreate, response: Response):
     return new_todo
 
 
+# get all todos
+@router.get("/todos", response_model=List[Todo])
+def list_todos():
+    return todos
+
+
 # search : get todo by title
 @router.get("/todos/search", response_model=List[Todo])
 def search_todo(limit: int = 10, q: str | None = None):
