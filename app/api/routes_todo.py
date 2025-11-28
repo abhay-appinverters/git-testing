@@ -2,9 +2,7 @@
 
 
 from typing import List
-
 from fastapi import APIRouter, HTTPException
-
 from app.models.todo import Todo, TodoCreate
 
 router = APIRouter(tags=["todos"])
