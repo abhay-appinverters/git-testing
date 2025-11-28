@@ -1,8 +1,8 @@
 # app/api/routes_todo.py
 
+from fastapi import APIRouter, HTTPException
 from typing import List
 
-from fastapi import APIRouter, HTTPException
 
 from app.models.todo import Todo, TodoCreate
 
